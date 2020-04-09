@@ -16,8 +16,14 @@ namespace AspAPI.Controllers
     {
         readonly HttpClient client = new HttpClient()
         {
-            BaseAddress = new Uri("https://localhost:44366//api/")
+            BaseAddress = new Uri("https://localhost:44366/api/")
         };
+
+        // GET: Department
+        public ActionResult Index()
+        {
+            return View(LoadDepartment());
+        }
 
         public JsonResult LoadDepartment()
         {
@@ -79,12 +85,6 @@ namespace AspAPI.Controllers
         {
             var Result = client.DeleteAsync("Department/" + Id).Result;
             return new JsonResult { Data = Result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
-
-        // GET: Department
-        public ActionResult Index()
-        {
-            return View(LoadDepartment());
         }
     }
 }

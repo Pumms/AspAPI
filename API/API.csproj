@@ -185,7 +185,10 @@
     <Compile Include="MyContext\myContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DepartmentRepository.cs" />
+    <Compile Include="Repository\DivisionRepository.cs" />
     <Compile Include="Repository\Interface\IDepartmentRepository.cs" />
+    <Compile Include="Repository\Interface\IDivisionRepository.cs" />
+    <Compile Include="ViewModel\DivisionVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

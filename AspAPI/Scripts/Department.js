@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    loadDataDept();
+    LoadDataDept();
     $('#Edit').hide();
 
     $(function () {
@@ -7,36 +7,26 @@
     })
 });
 
-
 document.getElementById("BtnAdd").addEventListener("click", function () {
     Clearall();
 });
 
-function RefreshTable(tableId, urlData)
-{
-  $.getJSON(urlData, null, function( json )
-  {
-    table = $(tableId).dataTable();
-    oSettings = table.fnSettings();
-
-    table.fnClearTable(this);
-
-    for (var i=0; i<json.aaData.length; i++)
-    {
-      table.oApi._fnAddData(oSettings, json.aaData[i]);
-    }
-
-    oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
-    table.fnDraw();
-  });
-} 
-
-function AutoReload()
-{
-    RefreshTable("#DataTable1", "/Department/LoadDepartment");
+function ClearScreen() {
+    $('#Name').val('');
+    $('#Save').show();
+    $('#Update').hide();
+    $('#Delete').hide();
+    $('#Modal').modal('hide');
 }
 
-function loadDataDept() {
+function Clearall() {
+    $('#Id').val('');
+    $('#Name').val('');
+    $('#Save').show();
+    $('#Edit').hide();
+}
+
+function LoadDataDept() {
     $.fn.dataTable.ext.errMode = 'none';
     $('#DataTable1').dataTable({
         "ajax": {
@@ -46,7 +36,6 @@ function loadDataDept() {
             dataSrc: ""
         },
         "columns": [
-            { "data": "Id" },
             { "data": "Name" },
             {
                 "data": "CreateDate", "render": function (data) {
@@ -179,7 +168,7 @@ function Edit() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Failed to Insert',
+                    text: 'Failed to Update',
                 })
                 ClearScreen();
             }
@@ -221,26 +210,11 @@ function Delete(Id) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Failed to Update',
+                        text: 'Failed to Delete',
                     })
                     ClearScreen();
                 }
             })
         }
     })
-}
-
-function ClearScreen() {
-    $('#Name').val('');
-    $('#Save').show();
-    $('#Update').hide();
-    $('#Delete').hide();
-    $('#Modal').modal('hide');
-}
-
-function Clearall() {
-    $('#Id').val('');
-    $('#Name').val('');
-    $('#Save').show();
-    $('#Edit').hide();
 }

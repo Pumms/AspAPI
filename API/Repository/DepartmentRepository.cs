@@ -21,6 +21,21 @@ namespace API.Repository
 
         DynamicParameters parameters = new DynamicParameters();
 
+        public IEnumerable<Department> Get()
+        {
+            var procName = "SP_ViewDept";
+            var view = connection.Query<Department>(procName, commandType: CommandType.StoredProcedure);
+            return view;
+        }
+
+        public async Task<IEnumerable<Department>> Get(int Id)
+        {
+            var procName = "SP_DetailDept";
+            parameters.Add("@Id", Id);
+            var detail = await connection.QueryAsync<Department>(procName, parameters, commandType: CommandType.StoredProcedure);
+            return detail;
+        }
+
         public int Create(Department department)
         {
             var procName = "SP_InsertDept";
@@ -35,21 +50,6 @@ namespace API.Repository
             parameters.Add("@Id", Id);
             var update = connection.Execute(procName, parameters, commandType: CommandType.StoredProcedure);
             return update;
-        }
-
-        public IEnumerable<Department> Get()
-        {
-            var procName = "SP_ViewDept";
-            var view = connection.Query<Department>(procName, commandType: CommandType.StoredProcedure);
-            return view;
-        }
-
-        public async Task<IEnumerable<Department>> Get(int Id)
-        {
-            var procName = "SP_DetailDept";
-            parameters.Add("@Id", Id);
-            var detail = await connection.QueryAsync<Department>(procName, parameters, commandType: CommandType.StoredProcedure);
-            return detail;
         }
 
         public int Update(int Id, Department department)
