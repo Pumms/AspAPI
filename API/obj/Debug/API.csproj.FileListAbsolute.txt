@@ -91,3 +91,4 @@ D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.csproj.CoreCompileInputs.cache
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.csproj.CopyComplete
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.dll
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.pdb
+D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.Migrations.adddivisimodel.resources

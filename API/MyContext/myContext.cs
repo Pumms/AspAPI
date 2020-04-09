@@ -11,5 +11,6 @@ namespace API.MyContext
     {
         public myContext() : base("BelajarAPI") { }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Division> Divisions { get; set; }
     }
 }

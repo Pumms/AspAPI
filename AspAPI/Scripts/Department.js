@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    loadDataDept();
     $('#Edit').hide();
 
     $(function () {
@@ -6,47 +7,68 @@
     })
 });
 
+
 document.getElementById("BtnAdd").addEventListener("click", function () {
     Clearall();
 });
 
-$('#DataTable1').dataTable({
-    //"processing": true,
-    //"serverSide": true,
-    "ajax": loadDataDept(),
-    responsive: true,
-    "columns": [
-        { "name": "first", "orderable": false },
-        { "name": "second", "orderable": false },
-        { "name": "third", "orderable": false },
-        { "name": "fourth", "orderable": false },
-        { "name": "fifth", "orderable": false }
-    ]
-});
+function RefreshTable(tableId, urlData)
+{
+  $.getJSON(urlData, null, function( json )
+  {
+    table = $(tableId).dataTable();
+    oSettings = table.fnSettings();
+
+    table.fnClearTable(this);
+
+    for (var i=0; i<json.aaData.length; i++)
+    {
+      table.oApi._fnAddData(oSettings, json.aaData[i]);
+    }
+
+    oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+    table.fnDraw();
+  });
+} 
+
+function AutoReload()
+{
+    RefreshTable("#DataTable1", "/Department/LoadDepartment");
+}
 
 function loadDataDept() {
-    $.ajax({
-        url: "/Department/LoadDepartment",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            debugger;
-            var html = '';
-            $.each(result, function (key, Dept) {
-                html += '<tr>';
-                html += '<td>' + Dept.Id + '</td>';
-                html += '<td>' + Dept.Name + '</td>';
-                html += '<td>' + moment(Dept.CreateDate).format('DD-MM-YYYY hh:mm:ss') + '</td>';
-                html += '<td><button type="button" class="btn btn-warning" id="btnedit" data-toggle="tooltip" data-placement="top" title="Edit" onclick="return GetById(' + Dept.Id + ')"><i class="mdi mdi-pencil"></i></button>';
-                html += ' <button type="button" class="btn btn-danger" id="btndelete" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return Delete(' + Dept.Id + ')"><i class="mdi mdi-delete"></i></button> </td>';
-                html += '</tr>';
-            });
-            $('.BodyTable').html(html);
+    $.fn.dataTable.ext.errMode = 'none';
+    $('#DataTable1').dataTable({
+        "ajax": {
+            url: "/Department/LoadDepartment",
+            type: "GET",
+            dataType: "json",
+            dataSrc: ""
         },
-        error: function (errormsg) {
-            alert(errormessage.responseText);
-        }
+        "columns": [
+            { "data": "Id" },
+            { "data": "Name" },
+            {
+                "data": "CreateDate", "render": function (data) {
+                    return moment(data).tz('Asia/Jakarta').format('DD/MM/YYYY');
+                }
+            },
+            {
+                "data": "UpdateDate", "render": function (data) {
+                    var text = "Not Update Yet";
+                    if (data == null) {
+                        return text;
+                    } else {
+                        return moment(data).tz('Asia/Jakarta').format('DD/MM/YYYY');
+                    }
+                }
+            },
+            {
+                data: null, render: function (data, type, row) {
+                    return '<button type="button" class="btn btn-warning" id="BtnEdit" data-toggle="tooltip" data-placement="top" title="Edit" onclick="return GetById(' + row.Id + ')"><i class="mdi mdi-pencil"></i></button> &nbsp; <button type="button" class="btn btn-danger" id="BtnDelete" data-toggle="tooltip" data-placement="top" title="Hapus" onclick="return Delete(' + row.Id + ')"><i class="mdi mdi-delete"></i></button>';
+                }, "orderable": false
+            }
+        ]
     });
 }
 
@@ -74,6 +96,11 @@ function GetById(Id) {
 
 function Save() {
     debugger;
+    var table = $('#DataTable1').DataTable({
+        "ajax": {
+            url: "/Department/LoadDepartment"
+        }
+    });
     var Department = new Object();
     Department.Name = $('#Name').val();
     if ($('#Name').val() == "") {
@@ -97,7 +124,8 @@ function Save() {
                     title: 'Department Saved Successfully',
                     timer: 5000
                 }).then(function () {
-                    location.reload();
+                    $('#Modal').modal('hide');
+                    table.ajax.reload();
                     ClearScreen();
                 });
             } else {
@@ -114,6 +142,11 @@ function Save() {
 
 function Edit() {
     debugger;
+    var table = $('#DataTable1').DataTable({
+        "ajax": {
+            url: "/Department/LoadDepartment"
+        }
+    });
     var Department = new Object();
     Department.Id = $('#Id').val();
     Department.Name = $('#Name').val();
@@ -138,7 +171,8 @@ function Edit() {
                     title: 'Department Updated Successfully',
                     timer: 5000
                 }).then(function () {
-                    location.reload();
+                    $('#Modal').modal('hide');
+                    table.ajax.reload();
                     ClearScreen();
                 });
             } else {
@@ -154,6 +188,12 @@ function Edit() {
 }
 
 function Delete(Id) {
+    var table = $('#DataTable1').DataTable({
+        "ajax": {
+            url: "/Department/LoadDepartment"
+        }
+    });
+
     Swal.fire({
         title: "Are you sure ?",
         text: "You won't be able to Revert this!",
@@ -164,17 +204,17 @@ function Delete(Id) {
             debugger;
             $.ajax({
                 url: "Department/Delete/",
-                data: {Id:Id}
+                data: { Id: Id }
             }).then((result) => {
                 debugger;
                 if (result.StatusCode == 200) {
                     Swal.fire({
                         icon: 'success',
                         position: 'center',
-                        title: 'Department Saved Successfully',
+                        title: 'Department Delete Successfully',
                         timer: 5000
                     }).then(function () {
-                        location.reload();
+                        table.ajax.reload();
                         ClearScreen();
                     });
                 } else {
@@ -187,14 +227,14 @@ function Delete(Id) {
                 }
             })
         }
-    });
+    })
 }
 
 function ClearScreen() {
     $('#Name').val('');
+    $('#Save').show();
     $('#Update').hide();
     $('#Delete').hide();
-    $('#Save').show();
     $('#Modal').modal('hide');
 }
 

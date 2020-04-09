@@ -31,20 +31,27 @@ namespace API.Controllers
 
         public IHttpActionResult Post(Department departments)
         {
-            var post = department.Create(departments);
-            if(post > 0)
+            if (departments.Name != null && departments.Name != "")
             {
-                return Ok("Department Added Succesfully!");
+                //If condition success
+                var post = department.Create(departments); //Lakukan Input
+                if (post > 0)
+                {
+                    return Ok("Department Added Succesfully!");
+                }
             }
             return BadRequest("Failed to Add Department");
         }
 
         public IHttpActionResult Put(int Id, Department departments)
         {
-            var put = department.Update(Id, departments);
-            if (put > 0)
+            if ((departments.Name != null) && (departments.Name != ""))
             {
-                return Ok("Department Update Succesfully!");
+                var put = department.Update(Id, departments);
+                if (put > 0)
+                {
+                    return Ok("Department Update Succesfully!");
+                }
             }
             return BadRequest("Failed to Update Department");
         }
