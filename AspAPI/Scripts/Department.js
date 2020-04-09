@@ -12,30 +12,6 @@ document.getElementById("BtnAdd").addEventListener("click", function () {
     Clearall();
 });
 
-function RefreshTable(tableId, urlData)
-{
-  $.getJSON(urlData, null, function( json )
-  {
-    table = $(tableId).dataTable();
-    oSettings = table.fnSettings();
-
-    table.fnClearTable(this);
-
-    for (var i=0; i<json.aaData.length; i++)
-    {
-      table.oApi._fnAddData(oSettings, json.aaData[i]);
-    }
-
-    oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
-    table.fnDraw();
-  });
-} 
-
-function AutoReload()
-{
-    RefreshTable("#DataTable1", "/Department/LoadDepartment");
-}
-
 function loadDataDept() {
     $.fn.dataTable.ext.errMode = 'none';
     $('#DataTable1').dataTable({
