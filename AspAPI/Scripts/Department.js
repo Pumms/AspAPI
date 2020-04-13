@@ -1,10 +1,12 @@
 ﻿$(document).ready(function () {
+    var Today = new Date();
+
     LoadDataDept();
     $('#Edit').hide();
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-    })
+    });
 });
 
 document.getElementById("BtnAdd").addEventListener("click", function () {
@@ -29,6 +31,7 @@ function Clearall() {
 function LoadDataDept() {
     $.fn.dataTable.ext.errMode = 'none';
     $('#DataTable1').dataTable({
+        //dom: 'Bfrtip',
         "ajax": {
             url: "/Department/LoadDepartment",
             type: "GET",
@@ -44,7 +47,7 @@ function LoadDataDept() {
             },
             {
                 "data": "UpdateDate", "render": function (data) {
-                    var text = "Not Update Yet";
+                    var text = "Belum Diubah";
                     if (data == null) {
                         return text;
                     } else {
@@ -58,6 +61,40 @@ function LoadDataDept() {
                 }, "orderable": false
             }
         ]
+        //buttons: [
+        //    {
+        //        extend: "csv",
+        //        text: 'CSV',
+        //        exportOptions: {
+        //            columns: [0, 1, 2]
+        //        },
+        //        header: true,
+        //        title: 'List Department',
+        //        messageTop: 'List Department'
+        //    },
+        //    {
+        //        extend: "excel",
+        //        text: 'Excel',
+        //        exportOptions: {
+        //            columns: [0, 1, 2]
+        //        },
+        //        header: true,
+        //        title: 'List Department',
+        //        messageTop: 'List Department'
+        //    },
+        //    {
+        //        extend: "pdfHtml5",
+        //        text: 'PDF',
+        //        filename: function () {
+        //            return "Department List " + moment(today).format('DD/MM/YY');
+        //        },
+        //        exportOptions: {
+        //            columns: [0, 1, 2]
+        //        },
+        //        header: true,
+        //        title: 'List Department'
+        //    }
+        //]
     });
 }
 
@@ -217,3 +254,4 @@ function Delete(Id) {
             })
         }
     })
+}

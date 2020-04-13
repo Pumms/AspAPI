@@ -54,6 +54,7 @@ D:\Projek Visual Studio\AspAPI\API\bin\Antlr3.Runtime.dll
 D:\Projek Visual Studio\AspAPI\API\bin\Dapper.dll
 D:\Projek Visual Studio\AspAPI\API\bin\EntityFramework.dll
 D:\Projek Visual Studio\AspAPI\API\bin\EntityFramework.SqlServer.dll
+D:\Projek Visual Studio\AspAPI\API\bin\itextsharp.dll
 D:\Projek Visual Studio\AspAPI\API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Projek Visual Studio\AspAPI\API\bin\Microsoft.Web.Infrastructure.dll
 D:\Projek Visual Studio\AspAPI\API\bin\Newtonsoft.Json.dll
@@ -71,6 +72,7 @@ D:\Projek Visual Studio\AspAPI\API\bin\WebGrease.dll
 D:\Projek Visual Studio\AspAPI\API\bin\Dapper.xml
 D:\Projek Visual Studio\AspAPI\API\bin\EntityFramework.xml
 D:\Projek Visual Studio\AspAPI\API\bin\EntityFramework.SqlServer.xml
+D:\Projek Visual Studio\AspAPI\API\bin\itextsharp.xml
 D:\Projek Visual Studio\AspAPI\API\bin\Newtonsoft.Json.xml
 D:\Projek Visual Studio\AspAPI\API\bin\System.Net.Http.Formatting.xml
 D:\Projek Visual Studio\AspAPI\API\bin\System.Web.Helpers.xml
@@ -86,9 +88,9 @@ D:\Projek Visual Studio\AspAPI\API\bin\Antlr3.Runtime.pdb
 D:\Projek Visual Studio\AspAPI\API\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.csprojAssemblyReference.cache
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.Migrations.addmodeldept.resources
+D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.Migrations.adddivisimodel.resources
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.csproj.GenerateResource.cache
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.csproj.CoreCompileInputs.cache
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.csproj.CopyComplete
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.dll
 D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.pdb
-D:\Projek Visual Studio\AspAPI\API\obj\Debug\API.Migrations.adddivisimodel.resources

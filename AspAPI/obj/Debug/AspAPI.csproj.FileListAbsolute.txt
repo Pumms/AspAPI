@@ -54,6 +54,7 @@ D:\Projek Visual Studio\AspAPI\AspAPI\bin\Antlr3.Runtime.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\API.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\EntityFramework.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\EntityFramework.SqlServer.dll
+D:\Projek Visual Studio\AspAPI\AspAPI\bin\itextsharp.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\Microsoft.AspNet.Identity.Core.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -84,6 +85,7 @@ D:\Projek Visual Studio\AspAPI\AspAPI\bin\Dapper.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\System.Web.Http.WebHost.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\API.pdb
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\API.dll.config
+D:\Projek Visual Studio\AspAPI\AspAPI\bin\itextsharp.xml
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\System.Net.Http.Formatting.xml
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\System.Web.Helpers.xml
 D:\Projek Visual Studio\AspAPI\AspAPI\bin\System.Web.Mvc.xml
@@ -119,3 +121,5 @@ D:\Projek Visual Studio\AspAPI\AspAPI\obj\Debug\AspAPI.csproj.CoreCompileInputs.
 D:\Projek Visual Studio\AspAPI\AspAPI\obj\Debug\AspAPI.csproj.CopyComplete
 D:\Projek Visual Studio\AspAPI\AspAPI\obj\Debug\AspAPI.dll
 D:\Projek Visual Studio\AspAPI\AspAPI\obj\Debug\AspAPI.pdb
+D:\Projek Visual Studio\AspAPI\AspAPI\bin\EPPlus.dll
+D:\Projek Visual Studio\AspAPI\AspAPI\bin\EPPlus.xml
